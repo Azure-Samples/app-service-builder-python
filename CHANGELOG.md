@@ -1,13 +1,14 @@
-## [project-title] Changelog
+# App Service Builder Python sample changelog
 
-<a name="x.y.z"></a>
-# x.y.z (yyyy-mm-dd)
+## Unreleased
 
-*Features*
-* ...
+### Features
 
-*Bug Fixes*
-* ...
+- Standalone Python 3.14 standard-library HTTP app with root and health endpoints.
+- Explicit root-level App Service Builder runtime manifest and public greeting.
+- Local HTTP tests and GitHub Actions validation.
 
-*Breaking Changes*
-* ...
+### Documentation
+
+- Local setup, fork-based Portal deployment, explicit redeployment, and app-only cleanup.
+- Private Preview and dev/test-only scope; live cloud qualification remains pending.

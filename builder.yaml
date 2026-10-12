@@ -1,0 +1,11 @@
+components:
+  - name: web
+    role: web
+    platform: python
+    platformVersion: "3.14"
+    path: /
+    run:
+      port: 8080
+      start: python app.py
+      healthCheckPath: /health
+      healthCheckStatusCodes: [200]
