@@ -1,0 +1,2 @@
+# Deliberately no third-party dependencies. Oryx still receives a requirements
+# manifest and explicit Python platform/version; this app uses the standard library.
