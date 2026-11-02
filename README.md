@@ -12,6 +12,9 @@ cloud build or deployment.
 
 - `/` returns HTTP 200 and `App Service Builder / python-web: Hello`.
 - `/health` returns HTTP 200 and `OK`; unknown paths return HTTP 404.
+- `/demo` is a responsive, dependency-free visual introduction with the current
+  public greeting, a Python configuration example, and links to the real routes.
+  The original `/` and `/health` responses are unchanged.
 - `SAMPLE_GREETING` changes the deliberately public greeting.
 - Root-level `builder.yaml` explicitly selects Python 3.14, the startup command
   `python app.py`, and `/health`. It relies on the single-component defaults for
@@ -72,6 +75,13 @@ Expect HTTP 200 with `App Service Builder / python-web: Hello`, HTTP 200 with `O
 and HTTP 404 with `Not found`, respectively. Stop the server with Ctrl+C.
 Do not override `PORT`: this sample always listens on 8080.
 
+Open [http://localhost:8080/demo](http://localhost:8080/demo) in a browser for the
+visual showcase. It uses local inline styles and system fonts; no JavaScript,
+external assets, or package installation is needed. `SAMPLE_GREETING` is displayed
+as escaped text on this page as well as in the original plain-text response.
+Keep `demo.html` alongside `app.py`; the server loads it relative to the script,
+not the current working directory.
+
 ## Demo
 
 ### Deploy your fork with Portal
@@ -86,7 +96,8 @@ using your Private Preview access:
    repository. Do not select the upstream Azure-Samples repository.
 3. Select your fork's **`main` branch** and the **repository root** as the app
    source root. Keep `app.py`, `requirements.txt`, and `builder.yaml` together
-   at that root; there is no `samples/python-web` subdirectory to select.
+   at that root, along with `demo.html`; there is no `samples/python-web`
+   subdirectory to select.
 4. Start deployment and wait for a successful terminal deployment state.
    Submitting a deployment request does not mean it has finished.
 5. Read the app's runtime URL from Portal, then check both `/` and `/health`:
@@ -152,7 +163,8 @@ python3 -m unittest discover -s tests -v
 ```
 
 On Windows use `python` instead of `python3`. Tests start owned servers on
-ephemeral loopback ports, check responses and greetings, and shut down afterward.
+ephemeral loopback ports, check text and HTML responses, public greetings and
+HTML escaping, and shut down afterward.
 They do not deploy to Azure or require credentials.
 
 The build contract remains Python 3.14, `python app.py`, port 8080, and
